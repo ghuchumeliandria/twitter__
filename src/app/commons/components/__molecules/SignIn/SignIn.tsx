@@ -39,7 +39,7 @@ function SignIn() {
             </button>
           </div>
           <p className="text-[#5b6166] mt-11">
-            Don't have an account?{" "}
+            Don't have an account?
             <button className="text-[#1d9bf0] hover:underline">Sign up</button>
           </p>
         </div>
