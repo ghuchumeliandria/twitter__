@@ -27,7 +27,7 @@ function AuthorizationFooter() {
       <div className="w-full flex gap-4  justify-center flex-wrap">
         {words.map((word) => {
           return (
-            <div className="">
+            <div className="" key={word}>
               <p className="text-[13px] text-[#71767b] hover:underline cursor-pointer">
                 {word}
               </p>
