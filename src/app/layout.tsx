@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Roboto } from "next/font/google";
+// import { Roboto } from "next/font/google";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
+// const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
