@@ -28,7 +28,7 @@ function SignIn() {
           <OrElement />
           <div className="w-full flex flex-col">
             <AuthorizationInput
-            type="text"
+              type="text"
               placeholder="Phone,email,or username"
               className="border-[#333639;] mb-8 text-[white] outline-none focus:border-[#1d9bf0] text-[18px] placeholder-[#5b6166] border-[1px] rounded-[4px] h-14 pl-2 bg-transparent"
             />

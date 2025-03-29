@@ -18,7 +18,7 @@ function SignupOptions() {
           <OrElement />
           <CreateAccBtn
           />
-          <p className="text-[12px] leading-3 text-[#71767b]">
+          <p className="text-[12px] leading-3 text-textgray]">
             By signing up, you agree to the{" "}
             <span className="text-[#1d9bf0] hover:underline cursor-pointer">
               Terms of Service
