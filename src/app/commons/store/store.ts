@@ -1,3 +1,4 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { create } from "zustand";
 
 type Visibility = {
@@ -9,6 +10,15 @@ type Visibility = {
   CloseBtn: () => void;
   CreateAccVisibility: () => void;
   SignInNextVisibility: () => void;
+};
+
+type createAccount = {
+  name: string;
+  email: string;
+  setEmail: (email: string) => void;
+  setName: (name: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
 };
 
 // Authorization
@@ -46,4 +56,13 @@ export const useVisibility = create<Visibility>((set) => ({
       SignInNext: true,
     }));
   },
+}));
+
+export const useCreateAccount = create<createAccount>((set) => ({
+  email: "",
+  name: "",
+  password: "",
+  setPassword: (password) => set({ password }),
+  setEmail: (email) => set({ email }),
+  setName: (name) => set({ name }),
 }));

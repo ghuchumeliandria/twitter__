@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 interface inputPros {
   placeholder: string;
-  setInputValue? : (value : string) => void
-  inputValue? : string
+  inputValue? : string;
+  value : string,
+  Change : (value : string) => void
+  type : string
 }
-function CreateAccInput({ placeholder , setInputValue ,inputValue }: inputPros) {
+
+function CreateAccInput({ placeholder , inputValue , value , Change , type }: inputPros) {
     const [isFocused,setIsFocused] = useState(false)
   return (
     <>
       <div className={`relative w-full pt-6 pb-2 px-2.5 bg-transparent border-[1px] rounded-[4px] ${isFocused ? 'border-[#1d9bf0]  ' : ' border-[#71767b76]' }  `}>
         <input
-          type="text"
+          type={type}
           placeholder=" "
           className="w-full text-white bg-transparent outline-none text-[17px] "
-          onChange={(e) => setInputValue?.(e.target.value)}
+          value={value}
+          onChange={(e) => Change(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={(e) => setIsFocused(e.target.value !== '')}
           maxLength={50}

@@ -24,7 +24,7 @@ function CreateAppOptions({ className, arr }: optionsProps) {
           onBlur={(e) => setIsFocused(e.target.value == "")}
           id="">
           {arr.map((item) => {
-            return <option className="cursot-pointer" value="option">{item}</option>;
+            return <option key={item} className="cursot-pointer" value="option">{item}</option>;
           })}
         </select>
         <label

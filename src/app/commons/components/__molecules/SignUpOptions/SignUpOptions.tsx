@@ -18,17 +18,17 @@ function SignupOptions() {
           <OrElement />
           <CreateAccBtn
           />
-          <p className="text-[12px] leading-3 text-textgray]">
-            By signing up, you agree to the{" "}
-            <span className="text-[#1d9bf0] hover:underline cursor-pointer">
-              Terms of Service
+          <p className="text-[12px]  leading-3 text-[#71767b]">
+            By signing up, you agree to the 
+            <span className="text-[#1d9bf0] mx-1 hover:underline cursor-pointer">
+               Terms of Service 
             </span>
-            and{" "}
-            <span className="text-[#1d9bf0] hover:underline cursor-pointer">
+             and
+            <span className="text-[#1d9bf0] mx-1 hover:underline cursor-pointer">
               Privacy Policy
             </span>
-            , including{" "}
-            <span className="text-[#1d9bf0] hover:underline cursor-pointer">
+            , including
+            <span className="text-[#1d9bf0] mx-1 hover:underline cursor-pointer">
               Cookie use
             </span>
             .

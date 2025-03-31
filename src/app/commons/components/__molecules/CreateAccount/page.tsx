@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
 import CreateAccInput from "../../__atoms/CreateAccInput/CreateAccInput";
 import { useState } from "react";
 import CreateAppOptions from "../../__atoms/CreateAccOptons/CreateAccOptions";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "@/app/commons/firebase/firebase";
 function CreateAccount() {
-  const [inputValue, setInputValue] = useState("");
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const years = Array.from({ length: 2025 - 1905 + 1 }, (_, i) => 2025 - i);
   const months = [
@@ -21,7 +23,25 @@ function CreateAccount() {
     "November",
     "December",
   ];
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
 
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password,setPassword] = useState('')
+
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const res = await createUserWithEmailAndPassword(email, password  );
+      console.log({res});
+      setEmail("")
+      setName("")
+      setPassword("")
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="w-full max-w-[438px] mx-auto">
@@ -30,14 +50,27 @@ function CreateAccount() {
             Create your account
           </h1>
         </div>
-        <form action="" className="flex flex-col gap-8">
+        <form onSubmit={handleSignUp} className="flex flex-col gap-8">
           <div className="flex flex-col gap-7 w-full">
             <CreateAccInput
-              placeholder="Name"
-              setInputValue={setInputValue}
-              inputValue={`${inputValue.length} / 50`}
+              type="password"
+              placeholder="password"
+              value={password}
+              Change={setPassword}
             />
-            <CreateAccInput placeholder="Email" />
+            <CreateAccInput
+              type="email"
+              placeholder="email"
+              value={email}
+              Change={setEmail}
+            />
+            <CreateAccInput
+              type="text"
+              placeholder="name"
+              value={name}
+              inputValue={`${name.length} / 50`}
+              Change={setName}
+            />
           </div>
           <div className="w-full flex flex-col gap-5">
             <div className="">
@@ -54,7 +87,11 @@ function CreateAccount() {
             </div>
           </div>
           <div className="w-full">
-            <button type="submit" className="w-full h-14 bg-white rounded-[50px] font-bold text-[17px] hover:bg-[#ffffff94] ">Next</button>
+            <button
+              type="submit"
+              className="w-full h-14 bg-white rounded-[50px] font-bold text-[17px] hover:bg-[#ffffff94] ">
+              Next
+            </button>
           </div>
         </form>
       </div>

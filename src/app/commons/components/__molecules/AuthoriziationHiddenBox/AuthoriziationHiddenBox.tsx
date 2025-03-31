@@ -2,7 +2,7 @@
 import TwitterLogo from "@/app/commons/icons/TwitterLogo/TwitterLogo";
 import AuthorizationCloseBtn from "../../__atoms/Buttons/AuthorizationCloseBtn/AuthorizationCloseBtn ";
 import SignIn from "../SignIn/SignIn";
-import CreateAccount from "../CreateAccount/CreateAccount";
+import CreateAccount from "../CreateAccount/page";
 import { useVisibility } from "@/app/commons/store/store";
 function AuthoriziationHiddenBox() {
   
