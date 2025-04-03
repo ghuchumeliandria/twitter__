@@ -1,7 +1,6 @@
 "use client";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useEffect , useState } from "react";
 import SideBar from "@/app/commons/components/__organisms/SideBar/SideBar";

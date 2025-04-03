@@ -9,7 +9,6 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import { useRouter } from "next/navigation";
 
-
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,14 +18,14 @@ function SignIn() {
     e.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(email, password);
-      
+
       setEmail("");
       setPassword("");
       if (res) {
         router.push("/pages/Twitter");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
@@ -64,7 +63,7 @@ function SignIn() {
           </button>
         </form>
         <p className="text-[#5b6166] mt-11">
-          Don't have an account?
+          Don&apos;t have an account?
           <button className="text-[#1d9bf0] hover:underline">Sign up</button>
         </p>
       </div>
