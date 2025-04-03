@@ -10,9 +10,14 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
-        bgmain : 'var(--bgmain)',
+        bgmain: "var(--bgmain)",
         foreground: "var(--foreground)",
-        textgray: 'var(--textgray)',
+        textgray: "var(--textgray)",
+        bordercolor: "#2F3336",
+        textgray2: '#808080'
+      },
+      screens: {
+        "max-1290": { max: "1290px" },
       },
     },
   },

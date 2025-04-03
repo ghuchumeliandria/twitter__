@@ -3,9 +3,15 @@ import React from "react";
 import CreateAccInput from "../../__atoms/CreateAccInput/CreateAccInput";
 import { useState } from "react";
 import CreateAppOptions from "../../__atoms/CreateAccOptons/CreateAccOptions";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword  } from "react-firebase-hooks/auth";
 import { auth } from "@/app/commons/firebase/firebase";
+import { useRouter } from "next/navigation";
+import { signOut , updateProfile} from "firebase/auth";
 function CreateAccount() {
+
+
+
+  const router = useRouter();
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const years = Array.from({ length: 2025 - 1905 + 1 }, (_, i) => 2025 - i);
   const months = [
@@ -28,16 +34,24 @@ function CreateAccount() {
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [password,setPassword] = useState('')
+  const [password, setPassword] = useState("");
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await createUserWithEmailAndPassword(email, password  );
-      console.log({res});
-      setEmail("")
-      setName("")
-      setPassword("")
+      const res = await createUserWithEmailAndPassword(email, password);
+
+      if(!res || !res.user){
+        throw new Error("user is not defined")
+      }
+      await signOut(auth);
+      await updateProfile(res.user, { displayName: name });
+      console.log({ res });
+      setEmail("");
+      setName("");
+      setPassword("");
+
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +67,13 @@ function CreateAccount() {
         <form onSubmit={handleSignUp} className="flex flex-col gap-8">
           <div className="flex flex-col gap-7 w-full">
             <CreateAccInput
+              type="text"
+              placeholder="name"
+              value={name}
+              inputValue={`${name.length} / 50`}
+              Change={setName}
+            />
+            <CreateAccInput
               type="password"
               placeholder="password"
               value={password}
@@ -63,13 +84,6 @@ function CreateAccount() {
               placeholder="email"
               value={email}
               Change={setEmail}
-            />
-            <CreateAccInput
-              type="text"
-              placeholder="name"
-              value={name}
-              inputValue={`${name.length} / 50`}
-              Change={setName}
             />
           </div>
           <div className="w-full flex flex-col gap-5">

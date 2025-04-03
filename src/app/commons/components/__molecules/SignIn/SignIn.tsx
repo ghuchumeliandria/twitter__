@@ -8,6 +8,8 @@ import { auth } from "@/app/commons/firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 import { useRouter } from "next/navigation";
+
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +19,7 @@ function SignIn() {
     e.preventDefault();
     try {
       const res = await signInWithEmailAndPassword(email, password);
-      console.log({ res });
+      
       setEmail("");
       setPassword("");
       if (res) {
