@@ -25,7 +25,9 @@ function SignIn() {
       if (res) {
         router.push("/pages/Twitter");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
   return (
     <>

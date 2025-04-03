@@ -28,7 +28,7 @@ function SideBar() {
             <p className="text-white">{user?.displayName}</p>
             <p className="text-textgray2">{user?.email}</p>
           </div>
-          {/* <button className="w-full h-10 bg-white" onClick={() => signOut(auth)}>Log out</button> */}
+          <button className="w-full h-10 bg-white" onClick={() => signOut(auth)}>Log out</button>
 
           <MoreDotIcon />
         </div>
