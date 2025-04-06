@@ -22,7 +22,7 @@ function SignIn() {
       setEmail("");
       setPassword("");
       if (res) {
-        router.push("/pages/Twitter");
+        router.push("/pages/Home");
       }
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ function SignIn() {
             Change={setEmail}
             type="email"
             placeholder="Phone,email,or username"
-            className="border-[#333639;] mb-8 text-[white] outline-none focus:border-[#1d9bf0] text-[18px] placeholder-[#5b6166] border-[1px] rounded-[4px] h-14 pl-2 bg-transparent"
+            className="border-[#333639;] mb-2 text-[white] outline-none focus:border-[#1d9bf0] text-[18px] placeholder-[#5b6166] border-[1px] rounded-[4px] h-14 pl-2 bg-transparent"
           />
           <AuthorizationInput
             value={password}

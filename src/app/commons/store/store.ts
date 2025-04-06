@@ -12,6 +12,16 @@ type Visibility = {
   SignInNextVisibility: () => void;
 };
 
+// type FontType =  {
+//   fontIndex: number;
+//   setFontIndex: (index: number) => void;
+// }
+
+// export const useFontStore = create<FontType>((set) => ({
+//   fontIndex: 0,
+//   setFontIndex: (index) => set({ fontIndex: index }),
+// }));
+
 type createAccount = {
   name: string;
   email: string;

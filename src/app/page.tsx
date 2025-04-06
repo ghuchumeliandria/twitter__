@@ -13,14 +13,13 @@ export default function Home() {
 
   console.log(user);
   useEffect(() => {
-    if (loading) {
-      setShowLoading(false);
-    }
+    if (loading) return;
     if (user) {
-      setTimeout(() => router.push("/pages/Twitter"), 500);
+      setTimeout(() => router.push("pages/Home"));
     } else {
-      setTimeout(() => router.push("/"), 500);
+      setTimeout(() => router.push("/"));
     }
+    setShowLoading(false);
   }, [user, loading]);
 
   return (
