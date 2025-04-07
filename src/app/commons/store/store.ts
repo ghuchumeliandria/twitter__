@@ -1,4 +1,5 @@
 // import { createUserWithEmailAndPassword } from "firebase/auth";
+import { url } from "inspector";
 import { create } from "zustand";
 
 type Visibility = {
@@ -12,16 +13,6 @@ type Visibility = {
   SignInNextVisibility: () => void;
 };
 
-// type FontType =  {
-//   fontIndex: number;
-//   setFontIndex: (index: number) => void;
-// }
-
-// export const useFontStore = create<FontType>((set) => ({
-//   fontIndex: 0,
-//   setFontIndex: (index) => set({ fontIndex: index }),
-// }));
-
 type createAccount = {
   name: string;
   email: string;
@@ -30,6 +21,20 @@ type createAccount = {
   password: string;
   setPassword: (password: string) => void;
 };
+
+type ImgUpload = {
+  file: File | null;
+  url: string | null;
+  setFile: (file: File) => void;
+};
+export const useImgUpload = create<ImgUpload>((set) => ({
+  file: null,
+  url: null,
+  setFile: (file: File) => {
+    const objectUrl = URL.createObjectURL(file);
+    set({ file, url: objectUrl });
+  },
+}));
 
 // Authorization
 

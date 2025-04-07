@@ -1,22 +1,6 @@
 import { auth } from "@/app/commons/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AddPostForm from "../../__atoms/AddPostForm/AddPostForm";
-{
-  /* <form onSubmit={handleSubmit}>
-            <textarea
-              name=""
-              value={value}
-              onChange={(e) => setvalue(e.target.value)}
-              id=""></textarea>
-              <button type="submit" className="text-white">Submit</button>
-              {item.map((item) => {
-                return <div className="" key={item.id}>
-                  <h1 className="text-red-700">{item.userName}</h1>
-                  <h1 className="text-white">{item.userPost}</h1>
-                </div>
-              })}
-          </form> */
-}
 function AddPost() {
   const [user] = useAuthState(auth);
   return (

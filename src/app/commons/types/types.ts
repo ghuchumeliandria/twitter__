@@ -1,9 +1,23 @@
 export type sideBarFunctions = {
-    text : number
-}
+  text: number;
+};
 export type sideBarIndex = {
-    index : number
-}
+  index: number;
+};
 export type sideBarIconClassName = {
-    className : string
+  className: string;
+};
+
+export type ForYouList = {
+  userPost: string;
+  userName: string;
+  created_at: string;
+  id: string;
+  likes: number;
+  imgUrl : string
+};
+
+export type LikeBtn ={
+    like : number ,
+    id : string
 }

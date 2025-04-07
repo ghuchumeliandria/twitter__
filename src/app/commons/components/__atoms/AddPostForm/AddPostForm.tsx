@@ -1,21 +1,33 @@
 "use client";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
 import { db } from "@/app/commons/firebase/firebase";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState, FormEvent } from "react";
 import AddPostBtns from "../../__molecules/AddPostBtns/AddPostBtns";
+import { useImgUpload } from "@/app/commons/store/store";
 function AddPostForm() {
   const [user] = useAuthState(auth);
   const [value, setvalue] = useState("");
+  const { url } = useImgUpload();
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(collection(db, "post"), {
+      const docRef = doc(collection(db, "post"));
+      await setDoc(docRef, {
         userPost: value,
         userName: user?.displayName,
         created_at: serverTimestamp(),
+        likes: 0,
+        id: docRef.id,
+        imgUrl: url,
       });
       console.log(docRef.id);
       setvalue("");

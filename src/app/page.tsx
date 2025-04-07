@@ -5,6 +5,7 @@ import { auth } from "@/app/commons/firebase/firebase";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useState } from "react";
+import Loading from "./commons/components/__atoms/Loading/Loading";
 
 export default function Home() {
   const [user, loading] = useAuthState(auth);
@@ -26,9 +27,7 @@ export default function Home() {
     <>
       <div className="relative">
         {showLoading && (
-          <div className="absolute top-0 left-0 right-0 bottom-0 bg-black z-10 flex justify-center items-center">
-            <p className="text-white">loading...</p>
-          </div>
+          <Loading/>
         )}
 
         <MainContainer />
