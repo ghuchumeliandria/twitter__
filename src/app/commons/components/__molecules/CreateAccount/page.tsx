@@ -3,14 +3,11 @@ import React from "react";
 import CreateAccInput from "../../__atoms/CreateAccInput/CreateAccInput";
 import { useState } from "react";
 import CreateAppOptions from "../../__atoms/CreateAccOptons/CreateAccOptions";
-import { useCreateUserWithEmailAndPassword  } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useRouter } from "next/navigation";
-import { signOut , updateProfile} from "firebase/auth";
+import { signOut, updateProfile } from "firebase/auth";
 function CreateAccount() {
-
-
-
   const router = useRouter();
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const years = Array.from({ length: 2025 - 1905 + 1 }, (_, i) => 2025 - i);
@@ -41,8 +38,8 @@ function CreateAccount() {
     try {
       const res = await createUserWithEmailAndPassword(email, password);
 
-      if(!res || !res.user){
-        throw new Error("user is not defined")
+      if (!res || !res.user) {
+        throw new Error("user is not defined");
       }
       await signOut(auth);
       await updateProfile(res.user, { displayName: name });
@@ -74,16 +71,16 @@ function CreateAccount() {
               Change={setName}
             />
             <CreateAccInput
-              type="password"
-              placeholder="password"
-              value={password}
-              Change={setPassword}
-            />
-            <CreateAccInput
               type="email"
               placeholder="email"
               value={email}
               Change={setEmail}
+            />
+            <CreateAccInput
+              type="password"
+              placeholder="password"
+              value={password}
+              Change={setPassword}
             />
           </div>
           <div className="w-full flex flex-col gap-5">

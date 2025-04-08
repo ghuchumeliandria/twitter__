@@ -14,7 +14,8 @@ export type ForYouList = {
   created_at: string;
   id: string;
   likes: number;
-  imgUrl : string
+  imgUrl : string,
+  userEmail : string
 };
 
 export type LikeBtn ={

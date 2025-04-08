@@ -10,13 +10,18 @@ import TextareaAutosize from "react-textarea-autosize";
 import { db } from "@/app/commons/firebase/firebase";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import AddPostBtns from "../../__molecules/AddPostBtns/AddPostBtns";
 import { useImgUpload } from "@/app/commons/store/store";
+
 function AddPostForm() {
   const [user] = useAuthState(auth);
   const [value, setvalue] = useState("");
-  const { url } = useImgUpload();
+  const [url, setUrl] = useState("");
+  const imgUrl = useImgUpload((state) => state.imgUrl);
+  useEffect(() => {
+    setUrl(imgUrl);
+  }, [imgUrl]);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -28,6 +33,7 @@ function AddPostForm() {
         likes: 0,
         id: docRef.id,
         imgUrl: url,
+        userEmail : user?.email
       });
       console.log(docRef.id);
       setvalue("");

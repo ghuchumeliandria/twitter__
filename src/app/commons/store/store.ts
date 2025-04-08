@@ -23,17 +23,12 @@ type createAccount = {
 };
 
 type ImgUpload = {
-  file: File | null;
-  url: string | null;
-  setFile: (file: File) => void;
+  imgUrl: string;
+  setImgUrl: (src: string) => void;
 };
 export const useImgUpload = create<ImgUpload>((set) => ({
-  file: null,
-  url: null,
-  setFile: (file: File) => {
-    const objectUrl = URL.createObjectURL(file);
-    set({ file, url: objectUrl });
-  },
+  imgUrl: '',
+  setImgUrl: (src) => set({ imgUrl: src }),
 }));
 
 // Authorization
