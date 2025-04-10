@@ -8,6 +8,8 @@ import { auth } from "@/app/commons/firebase/firebase";
 import { useRouter } from "next/navigation";
 import { signOut, updateProfile } from "firebase/auth";
 import { useVisibility } from "@/app/commons/store/store";
+import { collection, serverTimestamp, doc, setDoc } from "firebase/firestore";
+import { db } from "@/app/commons/firebase/firebase";
 function CreateAccount() {
   const signInVisibility = useVisibility((state) => state.SignInVisibility);
   const router = useRouter();
@@ -49,7 +51,12 @@ function CreateAccount() {
       setEmail("");
       setName("");
       setPassword("");
-      signInVisibility()
+      signInVisibility();
+      const docRef = doc(collection(db, "users"));
+      await setDoc(docRef, {
+        name: name,
+        email: email,
+      });
       router.push("/");
     } catch (error) {
       console.log(error);

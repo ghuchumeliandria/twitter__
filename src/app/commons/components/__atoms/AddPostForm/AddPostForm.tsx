@@ -1,11 +1,5 @@
 "use client";
-import {
-  collection,
-  addDoc,
-  serverTimestamp,
-  doc,
-  setDoc,
-} from "firebase/firestore";
+import { collection, serverTimestamp, doc, setDoc } from "firebase/firestore";
 import TextareaAutosize from "react-textarea-autosize";
 import { db } from "@/app/commons/firebase/firebase";
 import { auth } from "@/app/commons/firebase/firebase";

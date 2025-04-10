@@ -1,4 +1,4 @@
-import PremiumBar from "../../__molecules/PremiumBar/PremiumBar";
+import PremiumBar from "../../__molecules/AllUsers/AllUsers";
 import SearchBar from "../../__molecules/SearchBar/SearchBar";
 import WhatsHappening from "../../__molecules/WhatsHappening/WhatsHappening";
 function UserSide() {
