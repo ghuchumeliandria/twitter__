@@ -6,19 +6,21 @@ export type sideBarIndex = {
 };
 export type sideBarIconClassName = {
   className: string;
+  color?: string;
 };
 
 export type ForYouList = {
   userPost: string;
   userName: string;
   created_at: string;
-  id: string;
+  userId: string;
+  id: string,
   likes: number;
-  imgUrl : string,
-  userEmail : string
+  imgUrl: string;
+  userEmail: string;
 };
 
-export type LikeBtn ={
-    like : number ,
-    id : string
-}
+export type LikeBtn = {
+  like: number;
+  id: string;
+};

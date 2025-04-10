@@ -38,7 +38,7 @@ function SideBarOptions({ index }: sideBarIndex) {
   const SideBarBtns = [
     { item: <HomeIcon className="w-7 h-7 " />, text: "Home", func: homePath },
     {
-      item: <SearchIcon className="w-7 h-7 " />,
+      item: <SearchIcon className="w-7 h-7 " color="white" />,
       text: "Search",
       func: searchPath,
     },
@@ -86,7 +86,7 @@ function SideBarOptions({ index }: sideBarIndex) {
               <div className="group-hover:bg-[#181818] transition-all duration-175 p-2.5 pr-6 rounded-[50px] flex gap-5 max-1290:pr-2.5 ">
                 {item.item}
                 <h1
-                  className={`text-white text-[20px]  ${
+                  className={`text-white text-[20px]   ${
                     ChangeFont === index ? "font-bold" : "font-normal"
                   } max-1290:hidden`}>
                   {item.text}

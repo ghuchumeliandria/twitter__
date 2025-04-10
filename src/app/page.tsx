@@ -12,7 +12,7 @@ export default function Home() {
   const [showLoading, setShowLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     if (loading) return;
     if (user) {
@@ -26,9 +26,7 @@ export default function Home() {
   return (
     <>
       <div className="relative">
-        {showLoading && (
-          <Loading/>
-        )}
+        {showLoading && <Loading />}
 
         <MainContainer />
       </div>

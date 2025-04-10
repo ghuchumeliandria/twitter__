@@ -1,5 +1,3 @@
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-import { url } from "inspector";
 import { create } from "zustand";
 
 type Visibility = {
@@ -24,11 +22,15 @@ type createAccount = {
 
 type ImgUpload = {
   imgUrl: string;
-  setImgUrl: (src: string) => void;
+  img: string;
+  setImgUrl: (url: string) => void;
+  setImg: (src: string) => void;
 };
 export const useImgUpload = create<ImgUpload>((set) => ({
-  imgUrl: '',
-  setImgUrl: (src) => set({ imgUrl: src }),
+  img: "",
+  imgUrl: "",
+  setImg: (src) => set({ img: src }),
+  setImgUrl: (url) => set({ imgUrl: url }),
 }));
 
 // Authorization

@@ -6,10 +6,11 @@ import AuthorizationInput from "../../__atoms/AuthorizationInput/AuthorizationIn
 import { useState } from "react";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-
+import { useVisibility } from "@/app/commons/store/store";
 import { useRouter } from "next/navigation";
 
 function SignIn() {
+  const signUp = useVisibility((state) => state.CreateAccVisibility)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
@@ -64,7 +65,7 @@ function SignIn() {
         </form>
         <p className="text-[#5b6166] mt-11">
           Don&apos;t have an account?
-          <button className="text-[#1d9bf0] hover:underline">Sign up</button>
+          <button className="text-[#1d9bf0] hover:underline" onClick={signUp}>Sign up</button>
         </p>
       </div>
     </>

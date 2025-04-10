@@ -1,18 +1,28 @@
 "use client";
-import { useEffect, useState } from "react";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-import Image from "next/image";
-import { db } from "@/app/commons/firebase/firebase";
-import PostInteractions from "../postInteractions/PostInteractions";
-import Loading from "../../__atoms/Loading/Loading";
+import { useState, useEffect } from "react";
 import { ForYouList } from "@/app/commons/types/types";
-import DeletePost from "../../__atoms/DeletePost/DeletePost";
+import { db } from "@/app/commons/firebase/firebase";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import DotIcon from "@/app/commons/icons/AddPostIcons/DotIcon";
+import DeletePost from "../../__atoms/DeletePost/DeletePost";
+import Image from "next/image";
+import PostInteractions from "../postInteractions/PostInteractions";
 
-function PostList() {
+function ProfilePosts() {
   const [isVisible, setIsVisible] = useState("");
   const [list, setList] = useState<ForYouList[]>([]);
   const [showLoading, setShowLoading] = useState(true);
+  const [userId, setUserId] = useState("");
+  const UserId = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(UserId, (user) => {
+      if (user) {
+        setUserId(user?.uid);
+      }
+    });
+  });
 
   useEffect(() => {
     const collectionRef = collection(db, "post");
@@ -30,12 +40,15 @@ function PostList() {
     return () => querySnapShot();
   }, []);
 
+  const filteredPost = list.filter((item) => {
+    return item.userId === userId;
+  });
+  console.log(filteredPost);
+
   return (
     <>
-      <div className="flex flex-col border-r-[1px] border-bordercolor  h-full ">
-        {showLoading && <Loading />}
-
-        {list.map((item) => {
+      <div className="w-full ">
+        {filteredPost.map((item) => {
           return (
             <div
               className="flex gap-2 border-b-[1px] border-bordercolor p-4 py-2 "
@@ -87,5 +100,4 @@ function PostList() {
     </>
   );
 }
-
-export default PostList;
+export default ProfilePosts;

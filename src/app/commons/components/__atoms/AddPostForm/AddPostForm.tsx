@@ -14,14 +14,27 @@ import { useState, FormEvent, useEffect } from "react";
 import AddPostBtns from "../../__molecules/AddPostBtns/AddPostBtns";
 import { useImgUpload } from "@/app/commons/store/store";
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 function AddPostForm() {
   const [user] = useAuthState(auth);
   const [value, setvalue] = useState("");
   const [url, setUrl] = useState("");
   const imgUrl = useImgUpload((state) => state.imgUrl);
+  const [userId, setUserId] = useState("");
   useEffect(() => {
     setUrl(imgUrl);
   }, [imgUrl]);
+
+  useEffect(() => {
+    const UserId = getAuth();
+    onAuthStateChanged(UserId, (user) => {
+      if (user) {
+        setUserId(user.uid);
+      }
+    });
+  }, []);
+  console.log(userId);
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
@@ -32,11 +45,12 @@ function AddPostForm() {
         created_at: serverTimestamp(),
         likes: 0,
         id: docRef.id,
+        userId: userId,
         imgUrl: url,
-        userEmail : user?.email
+        userEmail: user?.email,
       });
-      console.log(docRef.id);
       setvalue("");
+      setUrl("");
     } catch (error) {
       console.log("error", error);
     }
@@ -56,7 +70,7 @@ function AddPostForm() {
           onChange={(e) => setvalue(e.target.value)}
           id=""
         />
-        <AddPostBtns value={value} />
+        <AddPostBtns value={value} url={url} />
       </form>
     </>
   );

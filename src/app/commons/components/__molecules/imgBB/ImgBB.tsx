@@ -1,26 +1,23 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useImgUpload } from "@/app/commons/store/store";
+import ImageIcon from "@/app/commons/icons/AddPostIcons/ImageIcon";
 
 export default function UploadPage() {
-  const [image, setImage] = useState(null);
+  const image = useImgUpload((state) => state.img);
+  const setImage = useImgUpload((state) => state.setImg);
   const setImgUrl = useImgUpload((state) => state.setImgUrl);
-  const handleImageChange = (e: any) => {
-    setImage(e.target.files[0]);
-    if (e.target.files[0]) {
-      handleImageUpload();
-    }
-  };
 
-  const handleImageUpload = async () => {
-    if (!image) {
-      alert("Please select an image");
-      return;
-    }
+  const handleImageChange = async (e: any) => {
+    const img = e.target.files[0];
+
+    if (!img) return;
+
+    setImage(img);
 
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("image", img);
 
     try {
       console.log(formData);
@@ -38,11 +35,16 @@ export default function UploadPage() {
   };
 
   return (
-    <div>
-      <input type="file" onChange={handleImageChange} className="w-2" />
-      <div className="text-red-400" onClick={handleImageUpload}>
-        Click
-      </div>
+    <div className="flex gap-2">
+      <label htmlFor="file" className="text-red-400 cursor-pointer">
+        <input
+          type="file"
+          onChange={handleImageChange}
+          className="hidden"
+          id="file"
+        />
+        <ImageIcon />
+      </label>
     </div>
   );
 }

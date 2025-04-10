@@ -7,7 +7,9 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useRouter } from "next/navigation";
 import { signOut, updateProfile } from "firebase/auth";
+import { useVisibility } from "@/app/commons/store/store";
 function CreateAccount() {
+  const signInVisibility = useVisibility((state) => state.SignInVisibility);
   const router = useRouter();
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
   const years = Array.from({ length: 2025 - 1905 + 1 }, (_, i) => 2025 - i);
@@ -47,7 +49,7 @@ function CreateAccount() {
       setEmail("");
       setName("");
       setPassword("");
-
+      signInVisibility()
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -100,7 +102,7 @@ function CreateAccount() {
           <div className="w-full">
             <button
               type="submit"
-              className="w-full h-14 bg-white rounded-[50px] font-bold text-[17px] hover:bg-[#ffffff94] ">
+              className="w-full h-14 bg-white rounded-[50px] mb-5 font-bold text-[17px] hover:bg-[#ffffff94] ">
               Next
             </button>
           </div>

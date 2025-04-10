@@ -14,7 +14,7 @@ function SideBar({ index }: sideBarIndex) {
   return (
     <>
       <div className="w-full  max-w-[295px]">
-        <div className=" w-full max-w-[295px]  fixed h-full flex flex-col overflow-y-auto gap-2 justify-between pb-6 border-r-[1px] pt-[1.5px]  border-bordercolor ">
+        <div className=" w-full max-w-[295px]  sticky h-full flex flex-col overflow-y-auto gap-2  pb-6 border-r-[1px] pt-[1.5px]  border-bordercolor ">
           <div className="w-full flex flex-col gap-2 pr-8">
             <div className="w-full flex max-1290:justify-end">
               <div className="w-[50px] rounded-[50px] cursor-pointer p-2.5  hover:bg-[#181818]   ">
@@ -28,10 +28,10 @@ function SideBar({ index }: sideBarIndex) {
               </button>
             </div>
           </div>
-          <div className="w-full flex justify-end max-1290:pr-4">
+          <div className="w-full mt-4 flex justify-end max-1290:pr-4">
             <button
               onClick={() => setShowLogOut(!showLogOut)}
-              className="flex  items-center relative  gap-3 hover:bg-[#181818] p-3 rounded-[50px] cursor-pointer mr-2 ">
+              className="flex w-full items-center relative  gap-3 hover:bg-[#181818] p-3 rounded-[50px] cursor-pointer mr-2 ">
               <div className="w-[40px] h-[40px] bg-blue-800 pb-3 pl-1 rounded-[50px] flex justify-center items-center">
                 <p className="text-[25px]  text-white">
                   {user?.email?.charAt(0)}

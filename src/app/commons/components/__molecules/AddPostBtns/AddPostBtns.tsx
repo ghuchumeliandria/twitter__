@@ -7,19 +7,11 @@ import ScheduleIcon from "@/app/commons/icons/AddPostIcons/ScheduleIcon";
 import Image from "next/image";
 import Grok from "@/app/commons/icons/sideBarIcons/Grok";
 import UploadPage from "../imgBB/ImgBB";
-import { useImgUpload } from "@/app/commons/store/store";
-import { useEffect, useState } from "react";
 type value = {
   value: string;
+  url: string;
 };
-function AddPostBtns({ value }: value) {
-  const [url, setUrl] = useState("");
-  const imgUrl = useImgUpload((state) => state.imgUrl);
-
-  useEffect(() => {
-    setUrl(imgUrl);
-  }, [imgUrl]);
-
+function AddPostBtns({ value, url }: value) {
   const BtnArr = [
     <GifIcon />,
     <Grok className="text-[#f91880] w-5" />,
@@ -34,15 +26,15 @@ function AddPostBtns({ value }: value) {
       {url !== "" && (
         <div className="">
           <Image
-            src={`${url}`}
+            src={url}
             alt={"image"}
-            width={1}
-            height={1}
-            className="w-full object-cover"
+            width={300}
+            height={200}
+            className="w-full h-auto rounded-[15px] rounded-tr-[15px] mb-6"
           />
         </div>
       )}
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-between items-center border-t-[1px] border-bordercolor py-2">
         <div className="flex gap-4 items-center">
           <UploadPage />
           {BtnArr.map((btn, index) => {
@@ -56,7 +48,9 @@ function AddPostBtns({ value }: value) {
         <div className="">
           <button
             disabled={!value}
-            className="bg-white text-black w-[66px] h-9 rounded-full">
+            className={` text-black ${
+              !value ? "bg-[#ffffffb0]" : "bg-white"
+            }  w-[66px] h-9 rounded-full`}>
             Post
           </button>
         </div>

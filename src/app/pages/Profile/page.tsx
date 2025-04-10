@@ -1,5 +1,8 @@
 "use client";
+import Loading from "@/app/commons/components/__atoms/Loading/Loading";
+import ProfileSide from "@/app/commons/components/__organisms/ProfileSide/ProfileSide";
 import SideBar from "@/app/commons/components/__organisms/SideBar/SideBar";
+import UserSide from "@/app/commons/components/__organisms/UsersSide/UsersSide";
 import { auth } from "@/app/commons/firebase/firebase";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -20,14 +23,12 @@ function Profile() {
   }, [user, loading]);
   return (
     <>
-      {showLoading && (
-        <div className="absolute top-0 left-0 right-0 bottom-0 bg-black z-10 flex justify-center items-center">
-          <p className="text-white">loading...</p>
-        </div>
-      )}
-      <div className="w-full bg-black min-h-[100vh]">
-        <div className="w-full max-w-[1260px] mx-auto relative">
+      {showLoading && <Loading />}
+      <div className="w-full bg-black min-h-screen flex">
+        <div className="w-full flex max-w-[1260px] mx-auto relative">
           <SideBar index={7} />
+          <ProfileSide />
+          <UserSide />
         </div>
       </div>
     </>
